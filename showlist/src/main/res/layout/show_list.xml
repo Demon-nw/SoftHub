@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:gravity="left|center"
+    android:orientation="horizontal"
+    android:paddingBottom="20dp"
+    android:paddingTop="10dp"
+    android:id="@+id/show_item_button">
+
+    <LinearLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="1.0">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textAppearance="?android:attr/textAppearanceMedium"
+            android:singleLine="true"
+            android:layout_marginLeft="30dp"
+            android:textColor="#FF000000"
+            android:layout_weight="1.0"
+            android:text="Medium Text"
+            android:id="@+id/show_item_title" />
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="match_parent"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:singleLine="true"
+            android:visibility="gone"
+            android:layout_marginLeft="30dp"
+            android:text="Small Text"
+            android:id="@+id/show_item_subtitle" />
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_height="24dp"
+        android:layout_width="24dp"
+        android:src="@drawable/baseline_arrow_forward_24"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/show_item_image" />
+
+</LinearLayout>
