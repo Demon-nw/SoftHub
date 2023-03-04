@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,10 +22,10 @@ import cc.ficc.showlist.R;
 import cc.ficc.showlist.ShowView;
 import cc.ficc.showlist.bean.AppBean;
 
-public class HorizontalDisplay extends ShowView implements ShowView.Subassembly {
+public class HorizontalDisplay2 extends ShowView implements ShowView.Subassembly {
     private ICallback iCallback;
 
-    public HorizontalDisplay(Context context) {
+    public HorizontalDisplay2(Context context) {
         super(context);
         init(this);
         var linearLayoutManager = new LinearLayoutManager(getContext());
@@ -43,29 +42,25 @@ public class HorizontalDisplay extends ShowView implements ShowView.Subassembly 
     @Override
     public View onCreateItemView() {
         return LayoutInflater.from(getContext())
-                .inflate(R.layout.show_item_horizontal1, this, false);
+                .inflate(R.layout.show_item_horizontal2, this, false);
     }
 
     @Override
     public void convert(@NonNull BaseViewHolder baseViewHolder, AppBean appBean) {
-        LinearLayout linearLayout = baseViewHolder.findView(R.id.progress_horizontal1);
-        ImageView imageView = baseViewHolder.findView(R.id.imageView_horizontal1);
-        TextView textView = baseViewHolder.findView(R.id.textView_horizontal1);
-        TextView textView2 = baseViewHolder.findView(R.id.textView2_horizontal1);
+        ImageView imageView = baseViewHolder.findView(R.id.imageView_horizontal2);
+        ImageView imageView1 = baseViewHolder.findView(R.id.imageView2_horizontal2);
+        LinearLayout linearLayout = baseViewHolder.findView(R.id.progress_horizontal2);
+        Glide.with(getContext())
+                .load(appBean.getMainImage())
+                .apply(RequestOptions.bitmapTransform(new RoundedCorners(30)))
+                .into(imageView);
         Glide.with(getContext())
                 .load(appBean.getAppImage())
                 .apply(RequestOptions.bitmapTransform(new RoundedCorners(50)))
-                .into(imageView);
-        if (appBean.getTitle() == null) {
-            textView.setVisibility(View.GONE);
-        } else {
-            textView.setText(appBean.getTitle());
-        }
-        if (appBean.getSubTitle() == null) {
-            textView2.setVisibility(View.GONE);
-        } else {
-            textView2.setText(appBean.getSubTitle());
-        }
+                .into(imageView1);
+        baseViewHolder.setText(R.id.textView_horizontal2, appBean.getTitle());
+        baseViewHolder.setText(R.id.textView2_horizontal2, appBean.getSubTitle());
+        baseViewHolder.setText(R.id.textView3_horizontal2, appBean.getVersion());
         linearLayout.setOnClickListener(view -> {
             iCallback.itemClicked(view, appBean.getDownloadLink());
         });

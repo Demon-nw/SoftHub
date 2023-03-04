@@ -2,12 +2,10 @@ package cc.ficc.showlist;
 
 
 import android.content.Context;
-import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -18,23 +16,26 @@ import java.util.ArrayList;
 import cc.ficc.showlist.bean.AppBean;
 
 public abstract class ShowView extends RecyclerView {
-    public final static int HORIZONTAL_1 = 001;
-    public final static int HORIZONTAL_2 = 002;
     private Subassembly subassembly;
-    public ShowView(Context context){
+    public ShowView(Context context) {
         super(context);
     }
-    protected void init(ArrayList<AppBean> appBeans,Subassembly subassembly){
+
+    protected void init(Subassembly subassembly) {
         this.subassembly = subassembly;
-        setAdapter(new adapter(appBeans));
     }
+
+    public abstract void loadData(ArrayList<AppBean> appBeans, ICallback iCallback);
+
     public abstract View onCreateItemView();
-    public interface Subassembly{
+
+    public interface Subassembly {
         void convert(@NonNull BaseViewHolder baseViewHolder, AppBean appBean);
     }
-    class adapter extends BaseQuickAdapter<AppBean, BaseViewHolder>{
-        public adapter(ArrayList<AppBean> beans){
-            super(0,beans);
+
+    public class Adapter extends BaseQuickAdapter<AppBean, BaseViewHolder> {
+        public Adapter(ArrayList<AppBean> beans) {
+            super(0, beans);
         }
 
         @NonNull

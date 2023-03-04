@@ -6,6 +6,7 @@ public class AppBean {
     private String title;
     private String subTitle;
     private String version;
+    private String DownloadLink;
     public String getMainImage() {
         return mainImage;
     }
@@ -40,11 +41,12 @@ public class AppBean {
     @Override
     public String toString() {
         return "AppBean{" +
-                "appImage='" + appImage + '\'' +
+                "mainImage='" + mainImage + '\'' +
+                ", appImage='" + appImage + '\'' +
                 ", title='" + title + '\'' +
                 ", subTitle='" + subTitle + '\'' +
                 ", version='" + version + '\'' +
-                ", mainImage='" + mainImage + '\'' +
+                ", DownloadLink='" + DownloadLink + '\'' +
                 '}';
     }
 
@@ -56,4 +58,11 @@ public class AppBean {
         this.appImage = appImage;
     }
 
+    public String getDownloadLink() {
+        return DownloadLink;
+    }
+
+    public void setDownloadLink(String downloadLink) {
+        DownloadLink = downloadLink;
+    }
 }
